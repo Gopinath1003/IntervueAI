@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 const features = [
   { icon: "🤖", color: "#4f8ef720", iconColor: "#4f8ef7", title: "AI Mock Interviews", desc: "Conduct realistic interviews with an AI that adapts questions based on your responses, just like a real interviewer." },
@@ -60,7 +61,7 @@ function Navbar({ open, setOpen }) {
         <span className="iLogo">IntervueAI</span>
         <ul className="iNavLinks" role="list">
           {navLinks.map(l => (
-            <li key={l}><a href={`#${l.toLowerCase()}`}>{l}</a></li>
+            <li key={l}><a href={`${l.toLowerCase()}`}>{l}</a></li>
           ))}
         </ul>
         <div className="iNavCtas">

@@ -1,16 +1,31 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Signup from "./pages/Signup.jsx";
-import Signin from "./pages/Signin.jsx";
-import Dashboard from "./Dashboard.jsx";
-import ProtectedRoute from "./components/ProtectedRoute.jsx";
-import Home from "./pages/Home.jsx";
-import PublicRoute from "./components/PublicRoute.jsx";
+
+import Home from "./pages/Home";
+import Signup from "./pages/Signup";
+import Signin from "./pages/Signin";
+
+import PublicRoute from "./components/PublicRoute";
+import ProtectedRoute from "./components/ProtectedRoute";
+
+import {
+  DashboardLayout,
+  DashboardHome,
+  InterviewHistory,
+  Analytics,
+  Profile,
+  Settings,
+  StartInterview,
+  InterviewSession,
+} from "./pages/dashboard";
 
 function App() {
   return (
     <Router>
       <Routes>
+
+        {/* Public Pages */}
         <Route path="/" element={<Home />} />
+
         <Route
           path="/signup"
           element={
@@ -19,6 +34,7 @@ function App() {
             </PublicRoute>
           }
         />
+
         <Route
           path="/signin"
           element={
@@ -27,14 +43,27 @@ function App() {
             </PublicRoute>
           }
         />
+
+        {/* Protected Dashboard */}
         <Route
           path="/dashboard"
           element={
             <ProtectedRoute>
-              <Dashboard />
+              <DashboardLayout />
             </ProtectedRoute>
           }
-        />
+        >
+          <Route index element={<DashboardHome />} />
+
+          <Route path="interview/start" element={<StartInterview />} />
+          <Route path="interview/session" element={<InterviewSession />} />
+
+          <Route path="history" element={<InterviewHistory />} />
+          <Route path="analytics" element={<Analytics />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="settings" element={<Settings />} />
+        </Route>
+
       </Routes>
     </Router>
   );
