@@ -2,20 +2,18 @@ const express = require("express");
 
 const router = express.Router();
 
-const verifyToken = require(
-    "../middleware/authMiddleware"
-);
+const verifyToken = require("../middleware/authMiddleware");
 
 const {
-    createInterview
-} = require(
-    "../controllers/interviewController"
-);
+  createInterview,
+  submitInterview,
+  getQuestions,
+} = require("../controllers/interviewController");
 
-router.post(
-    "/create",
-    verifyToken,
-    createInterview
-);
+router.post("/create", verifyToken, createInterview);
+
+router.post("/submit", verifyToken, submitInterview);
+
+router.post("/generate", verifyToken, getQuestions);
 
 module.exports = router;

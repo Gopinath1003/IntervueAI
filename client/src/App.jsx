@@ -16,6 +16,7 @@ import {
   Settings,
   StartInterview,
   InterviewSession,
+  InterviewResult
 } from "./pages/dashboard";
 
 function App() {
@@ -57,7 +58,7 @@ function App() {
 
           <Route path="interview/start" element={<StartInterview />} />
           <Route path="interview/session" element={<InterviewSession />} />
-
+          <Route path="interview/result" element={<InterviewResult />} />
           <Route path="history" element={<InterviewHistory />} />
           <Route path="analytics" element={<Analytics />} />
           <Route path="profile" element={<Profile />} />

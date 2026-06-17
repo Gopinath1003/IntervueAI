@@ -1,45 +1,111 @@
-import { useLocation } from "react-router-dom";
-import { useState } from "react";
-import { questions } from "../../data/questions";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
+import axios from "axios";
 
 function InterviewSession() {
   const location = useLocation();
+  const navigate = useNavigate();
 
   const role = location.state.role;
 
-  const roleQuestions = questions[role];
-
+  const [roleQuestions, setRoleQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
-
   const [answers, setAnswers] = useState([]);
   const [answer, setAnswer] = useState("");
+  const [loading, setLoading] = useState(true);
+
+  const fetchQuestions = async () => {
+    try {
+      const token = localStorage.getItem("token");
+
+      const response = await axios.post(
+        "http://localhost:3001/api/interview/generate",
+        { role },
+        {
+          headers: {
+            Authorization: token,
+          },
+        },
+      );
+
+      console.log(response.data);
+
+      setRoleQuestions(response.data.questions);
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+    }
+  };
+
+  
 
   const nextQuestion = () => {
-    setAnswers([
+    const updatedAnswers = [
       ...answers,
       {
         question: roleQuestions[currentQuestion],
-
         answer,
       },
-    ]);
+    ];
+
+    setAnswers(updatedAnswers);
 
     if (currentQuestion < roleQuestions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
-
       setAnswer("");
     }
-    if (currentQuestion === roleQuestions.length - 1) {
-      // Submit answers to backend
-      console.log("Submitting answers:", answers);
+  };
+
+  const submitInterview = async () => {
+    try {
+      const token = localStorage.getItem("token");
+
+      const finalAnswers = [
+        ...answers,
+        {
+          question: roleQuestions[currentQuestion],
+          answer,
+        },
+      ];
+
+      await axios.post(
+        "http://localhost:3001/api/interview/submit",
+        {
+          role,
+          questions: finalAnswers,
+        },
+        {
+          headers: {
+            Authorization: token,
+          },
+        },
+      );
+
+      navigate("/dashboard/interview/result");
+    } catch (err) {
+      console.log(err);
     }
   };
 
-  const submitInterview = () => {
-    console.log(answers);
 
-    alert("Interview Submitted");
-  };
+  const hasFetched = useRef(false);
+
+  useEffect(() => {
+    if (hasFetched.current) return;
+
+    hasFetched.current = true;
+
+    fetchQuestions();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="p-10">
+        <h1 className="text-2xl font-bold">Generating AI Questions...</h1>
+      </div>
+    );
+  }
 
   return (
     <div className="p-10">
@@ -55,6 +121,7 @@ function InterviewSession() {
         className="border p-4 w-full"
         rows={6}
       />
+
       {currentQuestion === roleQuestions.length - 1 ? (
         <button
           onClick={submitInterview}

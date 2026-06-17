@@ -13,21 +13,30 @@ const interviewSchema = new mongoose.Schema(
         required: true
     },
 
+    questions: [
+        {
+            question: String,
+            answer: String
+        }
+    ],
+
     status: {
         type: String,
-        default: "pending"
+        default: "completed"
     },
 
     score: {
         type: Number,
         default: 0
     }
+
 },
 {
     timestamps: true
 });
 
-module.exports = mongoose.model(
+module.exports =
+mongoose.model(
     "Interview",
     interviewSchema
 );
