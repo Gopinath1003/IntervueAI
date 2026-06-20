@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
-
+import NotFound from "./pages/NotFound";
 import PublicRoute from "./components/PublicRoute";
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -16,14 +16,13 @@ import {
   Settings,
   StartInterview,
   InterviewSession,
-  InterviewResult
+  InterviewResult,
 } from "./pages/dashboard";
 
 function App() {
   return (
     <Router>
       <Routes>
-
         {/* Public Pages */}
         <Route path="/" element={<Home />} />
 
@@ -64,7 +63,7 @@ function App() {
           <Route path="profile" element={<Profile />} />
           <Route path="settings" element={<Settings />} />
         </Route>
-
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );

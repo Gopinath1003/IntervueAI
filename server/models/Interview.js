@@ -1,42 +1,44 @@
 const mongoose = require("mongoose");
 
 const interviewSchema = new mongoose.Schema(
-{
+  {
     userId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: true
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
     },
 
     role: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
 
     questions: [
-        {
-            question: String,
-            answer: String
-        }
+      {
+        question: String,
+        answer: String,
+      },
     ],
 
     status: {
-        type: String,
-        default: "completed"
+      type: String,
+      default: "completed",
     },
 
-    score: {
-        type: Number,
-        default: 0
-    }
+    overallScore: {
+      type: Number,
+      default: 0,
+    },
 
-},
-{
-    timestamps: true
-});
+    strengths: [String],
 
-module.exports =
-mongoose.model(
-    "Interview",
-    interviewSchema
+    weaknesses: [String],
+
+    suggestions: [String],
+  },
+  {
+    timestamps: true,
+  },
 );
+
+module.exports = mongoose.model("Interview", interviewSchema);

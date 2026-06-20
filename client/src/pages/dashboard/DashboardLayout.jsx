@@ -52,7 +52,7 @@ function Navbar({ onMenuClick }) {
             <p className="text-sm font-semibold text-slate-200 leading-none">
               {user.name}
             </p>
-            <p className="text-xs text-slate-500 mt-0.5">Pro Plan</p>
+            <p className="text-xs text-slate-500 mt-0.5">Free Plan</p>
           </div>
         </div>
       </div>

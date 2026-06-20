@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
-const userSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema(
+{
     name: {
         type: String,
         required: true,
@@ -19,8 +20,39 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         minlength: 6
+    },
+
+    profileImage: {
+        type: String,
+        default: ""
+    },
+
+    bio: {
+        type: String,
+        default: ""
+    },
+
+    college: {
+        type: String,
+        default: ""
+    },
+
+    github: {
+        type: String,
+        default: ""
+    },
+
+    linkedin: {
+        type: String,
+        default: ""
+    },
+
+    skills: {
+        type: [String],
+        default: []
     }
-},{
+},
+{
     timestamps: true
 });
 

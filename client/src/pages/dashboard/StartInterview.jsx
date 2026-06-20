@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import InterviewStepper from "../../components/InterviewStepper";
 
 function StartInterview() {
   const roles = [
@@ -14,7 +15,7 @@ function StartInterview() {
   const startInterview = async (role) => {
     const token = localStorage.getItem("token");
 
-    await axios.post(
+    const response = await axios.post(
       "http://localhost:3001/api/interview/create",
       { role },
       {
@@ -25,13 +26,17 @@ function StartInterview() {
     );
 
     navigate("/dashboard/interview/session", {
-      state: { role },
+      state: {
+        role,
+        interviewId: response.data._id,
+      },
     });
   };
 
   return (
     <div className="p-10">
       <h1 className="text-3xl font-bold mb-8">Select Interview Role</h1>
+      <InterviewStepper step={1} />
 
       <div className="grid grid-cols-2 gap-4">
         {roles.map((role) => (

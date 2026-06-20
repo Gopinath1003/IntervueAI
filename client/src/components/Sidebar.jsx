@@ -137,7 +137,7 @@ function Sidebar({ open, onClose }) {
               <p className="text-sm font-semibold text-slate-200 truncate">
                 {user.name}
               </p>
-              <p className="text-xs text-slate-500 truncate">Pro Plan</p>
+              <p className="text-xs text-slate-500 truncate">Free Plan</p>
             </div>
           </div>
           <button
