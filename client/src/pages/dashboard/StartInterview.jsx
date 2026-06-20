@@ -16,7 +16,7 @@ function StartInterview() {
     const token = localStorage.getItem("token");
 
     const response = await axios.post(
-      "http://localhost:3001/api/interview/create",
+      `${import.meta.env.VITE_API_URL}/api/interview/create`,
       { role },
       {
         headers: {

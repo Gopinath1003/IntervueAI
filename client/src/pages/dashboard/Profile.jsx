@@ -29,7 +29,7 @@ const Profile = () => {
 
   const fetchProfile = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/api/user/profile", {
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/user/profile`, {
         headers: {
           Authorization: token,
         },
@@ -64,7 +64,7 @@ const Profile = () => {
   const saveProfile = async () => {
     try {
       await axios.put(
-        "http://localhost:3001/api/user/profile",
+        `${import.meta.env.VITE_API_URL}/api/user/profile`,
         {
           ...formData,
           skills: formData.skills.split(",").map((skill) => skill.trim()),

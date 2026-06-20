@@ -69,7 +69,7 @@ function InterviewSession() {
       const token = localStorage.getItem("token");
 
       const response = await axios.post(
-        "http://localhost:3001/api/interview/generate",
+        `${import.meta.env.VITE_API_URL}/api/interview/generate`,
         { role },
         {
           headers: {
@@ -131,7 +131,7 @@ function InterviewSession() {
       setEvaluationLoading(true);
 
       await axios.post(
-        "http://localhost:3001/api/interview/submit",
+        `${import.meta.env.VITE_API_URL}/api/interview/submit`,
         {
           interviewId,
           questions: finalAnswers,
@@ -144,7 +144,7 @@ function InterviewSession() {
       );
 
       const evaluation = await axios.post(
-        "http://localhost:3001/api/interview/evaluate",
+        `${import.meta.env.VITE_API_URL}/api/interview/evaluate`,
         {
           questions: finalAnswers,
         },
@@ -156,7 +156,7 @@ function InterviewSession() {
       );
 
       await axios.put(
-        `http://localhost:3001/api/interview/${interviewId}/result`,
+        `${import.meta.env.VITE_API_URL}/api/interview/${interviewId}/result`,
         evaluation.data,
         {
           headers: {

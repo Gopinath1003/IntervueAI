@@ -14,7 +14,7 @@ const Signup = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post("http://localhost:3001/api/auth/signup", { name, email, password })
+        axios.post(`${import.meta.env.VITE_API_URL}/api/auth/signup`, { name, email, password })
         .then((result) => {console.log(result); navigate("/signin")})
         .catch((err) => {
           console.log(err);

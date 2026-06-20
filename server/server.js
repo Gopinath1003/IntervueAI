@@ -11,7 +11,13 @@ const userRoutes = require("./routes/userRoutes")
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin:
+      "https://intervueai.vercel.app",
+    credentials: true,
+  })
+);
 
 mongoose
   .connect(process.env.MONGO_URI)

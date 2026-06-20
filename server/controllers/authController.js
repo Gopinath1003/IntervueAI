@@ -67,6 +67,7 @@ const signin = async (req, res) => {
         expiresIn: "7d",
       },
     );
+    console.log(process.env.JWT_SECRET);
 
     res.status(200).json({
       message: "Success",

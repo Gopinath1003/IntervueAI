@@ -14,7 +14,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3001/api/auth/signin", { email, password })
+      .post(`${import.meta.env.VITE_API_URL}/api/auth/signin`, { email, password })
       .then((result) => {
         if (result.data.message === "Success") {
           localStorage.setItem("token", result.data.token);
