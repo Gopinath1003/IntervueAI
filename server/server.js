@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(
   cors({
     origin:
-      "https://intervueai.vercel.app",
+      "https://intervueai-beta.vercel.app",
     credentials: true,
   })
 );
