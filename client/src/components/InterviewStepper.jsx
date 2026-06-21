@@ -27,7 +27,7 @@ function InterviewStepper({ step }) {
   const progress = ((step - 1) / (steps.length - 1)) * 100;
 
   return (
-    <div className="w-full mb-12">
+    <div className="w-full mb-4">
 
       {/* Progress Bar */}
 
@@ -36,7 +36,7 @@ function InterviewStepper({ step }) {
         <div className="absolute top-7 left-0 w-full h-1 bg-slate-800 rounded-full" />
 
         <div
-          className="absolute top-7 left-0 h-1 bg-gradient-to-r from-blue-500 via-cyan-500 to-indigo-500 rounded-full transition-all duration-700"
+          className="absolute top-7 left-0 h-1 bg-linear-to-r from-blue-500 via-cyan-500 to-indigo-500 rounded-full transition-all duration-700"
           style={{ width: `${progress}%` }}
         />
 
@@ -101,33 +101,6 @@ function InterviewStepper({ step }) {
               </div>
             );
           })}
-        </div>
-      </div>
-
-      {/* Current Stage Card */}
-
-      <div className="mt-8 max-w-3xl mx-auto">
-
-        <div className="bg-slate-900/70 backdrop-blur-lg border border-slate-800 rounded-2xl p-5">
-
-          <div className="flex justify-between items-center">
-
-            <div>
-              <h3 className="text-white font-semibold text-lg">
-                {steps[step - 1]?.label}
-              </h3>
-
-              <p className="text-slate-400 text-sm mt-1">
-                Step {step} of {steps.length}
-              </p>
-            </div>
-
-            <div className="text-blue-400 font-semibold">
-              {Math.round((step / steps.length) * 100)}%
-            </div>
-
-          </div>
-
         </div>
       </div>
     </div>

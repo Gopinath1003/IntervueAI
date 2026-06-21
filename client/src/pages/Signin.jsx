@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
 
   const navigate = useNavigate();
 
@@ -25,7 +24,6 @@ const Login = () => {
       .catch((err) => {
         console.log(err);
         if (err.response && err.response.data && err.response.data.message) {
-          setError(err.response.data.message);
           alert(err.response.data.message);
         }
       });

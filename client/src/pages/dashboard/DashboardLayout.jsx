@@ -73,7 +73,7 @@ function DashboardLayout() {
         <Navbar onMenuClick={() => setSidebarOpen(true)} />
 
         {/* Scrollable content */}
-        <main className="flex-1 overflow-y-auto px-4 lg:px-6 py-6 space-y-5">
+        <main className="flex-1 overflow-y-auto px-4 lg:px-12 py-6 space-y-5">
           <Outlet />
         </main>
       </div>

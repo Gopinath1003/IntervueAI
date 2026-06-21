@@ -214,45 +214,88 @@ function InterviewSession() {
   }
 
   return (
-    <div className="p-10">
-      <InterviewStepper step={2} />
-      <h1 className="text-3xl font-bold mb-8">{role}</h1>
+  <div className="p-6">
+    <InterviewStepper step={2} />
 
-      <h2 className="text-xl mb-6">Question {currentQuestion + 1}</h2>
+    {/* Header */}
+    <div className="mt-6 mb-8">
+      <h1 className="text-3xl font-bold text-white mb-2">
+        {role}
+      </h1>
 
-      <p className="mb-6">{roleQuestions[currentQuestion]}</p>
+      <p className="text-sm text-slate-400">
+        Answer the interview questions carefully. AI will evaluate your
+        responses and provide detailed feedback.
+      </p>
+    </div>
 
+    {/* Question Card */}
+    <div className="bg-slate-900/70 border border-slate-800 rounded-2xl p-6">
+
+      <div className="flex items-center justify-between mb-5">
+        <h2 className="text-xl font-semibold text-white">
+          Question {currentQuestion + 1}
+        </h2>
+
+        <span className="text-xs px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20">
+          {currentQuestion + 1} / {roleQuestions.length}
+        </span>
+      </div>
+
+      <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-4 mb-6">
+        <p className="text-slate-200 leading-relaxed">
+          {roleQuestions[currentQuestion]}
+        </p>
+      </div>
+
+      {/* Answer Box */}
       <textarea
         value={answer}
         onChange={(e) => setAnswer(e.target.value)}
-        className="border p-4 w-full"
-        rows={6}
+        placeholder="Type your answer here..."
+        className="w-full bg-slate-800 border border-slate-700 rounded-xl p-4 text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        rows={7}
       />
-      <button
-        onClick={startRecording}
-        disabled={isRecording}
-        className="mt-4 bg-purple-500 text-white px-4 py-2 rounded"
-      >
-        {isRecording ? "🎙️ Listening..." : "🎤 Start Recording"}
-      </button>
 
-      {currentQuestion === roleQuestions.length - 1 ? (
+      {/* Voice Input */}
+      <div className="mt-4">
         <button
-          onClick={submitInterview}
-          className="mt-6 bg-green-500 text-white px-6 py-3 rounded"
+          onClick={startRecording}
+          disabled={isRecording}
+          className={`px-4 py-2 rounded-xl text-sm font-medium transition-all
+          ${
+            isRecording
+              ? "bg-red-500/20 text-red-400 border border-red-500/30"
+              : "bg-purple-500/20 text-purple-400 border border-purple-500/30 hover:bg-purple-500/30"
+          }`}
         >
-          Submit Answers
+          {isRecording
+            ? "🎙️ Listening..."
+            : "🎤 Start Recording"}
         </button>
-      ) : (
-        <button
-          onClick={nextQuestion}
-          className="mt-6 bg-blue-500 text-white px-6 py-3 rounded"
-        >
-          Next Question
-        </button>
-      )}
+      </div>
+
+      {/* Navigation Buttons */}
+      <div className="mt-6 flex justify-end">
+        {currentQuestion === roleQuestions.length - 1 ? (
+          <button
+            onClick={submitInterview}
+            className="px-6 py-3 rounded-xl bg-linear-to-r from-emerald-500 to-green-600 text-white font-semibold hover:opacity-90 transition"
+          >
+            Submit Interview
+          </button>
+        ) : (
+          <button
+            onClick={nextQuestion}
+            className="px-6 py-3 rounded-xl bg-linear-to-r from-blue-600 to-violet-600 text-white font-semibold hover:opacity-90 transition"
+          >
+            Next Question →
+          </button>
+        )}
+      </div>
     </div>
-  );
+  </div>
+);
 }
 
 export default InterviewSession;

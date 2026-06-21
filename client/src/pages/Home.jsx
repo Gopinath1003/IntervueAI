@@ -203,7 +203,7 @@ function NavBar() {
               </a>
             ),
           )}
-          <button className="mt-2 bg-gradient-to-r from-indigo-500 to-violet-600 text-white px-4 py-2.5 rounded-lg font-medium text-sm">
+          <button className="mt-2 bg-linear-to-r from-indigo-500 to-violet-600 text-white px-4 py-2.5 rounded-lg font-medium text-sm">
             Get Started Free
           </button>
         </div>
@@ -215,18 +215,15 @@ function NavBar() {
 function InterviewTerminal() {
   const { displayed, typing } = useTypewriter(INTERVIEW_LINES);
   const bottomRef = useRef(null);
-  useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [displayed, typing]);
 
   return (
     <div className="relative w-full max-w-lg mx-auto lg:mx-0">
       {/* Glow halo */}
-      <div className="absolute -inset-4 bg-gradient-to-r from-indigo-600/20 to-violet-600/20 rounded-3xl blur-2xl pointer-events-none" />
+      <div className="absolute -inset-4 bg-linear-to-r from-indigo-600/20 to-violet-600/20 rounded-3xl blur-2xl pointer-events-none" />
 
       <div className="relative rounded-2xl border border-white/10 bg-[#111118]/90 backdrop-blur-xl shadow-2xl overflow-hidden">
         {/* Chrome bar */}
-        <div className="flex items-center gap-2 px-4 py-3 bg-white/[0.03] border-b border-white/[0.06]">
+        <div className="flex items-center gap-2 px-4 py-3 bg-white/3 border-b border-white/6">
           <span className="w-3 h-3 rounded-full bg-red-500/70" />
           <span className="w-3 h-3 rounded-full bg-yellow-500/70" />
           <span className="w-3 h-3 rounded-full bg-green-500/70" />
@@ -240,15 +237,15 @@ function InterviewTerminal() {
         </div>
 
         {/* Messages */}
-        <div className="p-4 flex flex-col gap-3 min-h-[280px] max-h-[320px] overflow-y-auto scrollbar-none">
+        <div className="p-4 flex flex-col gap-3 min-h-70 max-h-80 overflow-y-auto scrollbar-none">
           {displayed.map((line, i) => (
             <div
               key={i}
               className={`flex gap-2.5 ${line.role === "user" ? "flex-row-reverse" : ""}`}
             >
               <div
-                className={`flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold
-                ${line.role === "ai" ? "bg-gradient-to-br from-indigo-500 to-violet-600" : "bg-gradient-to-br from-cyan-500 to-blue-600"}`}
+                className={`shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold
+                ${line.role === "ai" ? "bg-linear-to-br from-indigo-500 to-violet-600" : "bg-linear-to-br from-cyan-500 to-blue-600"}`}
               >
                 {line.role === "ai" ? (
                   <Bot size={13} className="text-white" />
@@ -424,6 +421,7 @@ export default function IntervueAI() {
   const [featRef, featVisible] = useInView(0.1);
   const [howRef, howVisible] = useInView(0.15);
   const [ctaRef, ctaVisible] = useInView(0.2);
+
 
   return (
     <div
