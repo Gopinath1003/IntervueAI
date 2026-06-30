@@ -422,6 +422,10 @@ export default function IntervueAI() {
   const [howRef, howVisible] = useInView(0.15);
   const [ctaRef, ctaVisible] = useInView(0.2);
 
+  const navigate = useNavigate();
+
+  const token = localStorage.getItem("token");
+
 
   return (
     <div
@@ -471,7 +475,7 @@ export default function IntervueAI() {
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <button className="flex items-center gap-2 bg-gradient-to-r from-indigo-500 to-violet-600 hover:from-indigo-400 hover:to-violet-500 text-white px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-200 shadow-xl shadow-indigo-500/30 hover:shadow-indigo-500/50 hover:-translate-y-0.5">
+              <button onClick={() => {if(token) navigate("/dashboard/interview/start"); else navigate("/signin")}} className="flex items-center gap-2 bg-gradient-to-r from-indigo-500 to-violet-600 hover:from-indigo-400 hover:to-violet-500 text-white px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-200 shadow-xl shadow-indigo-500/30 hover:shadow-indigo-500/50 hover:-translate-y-0.5">
                 Start Interview <ChevronRight size={16} />
               </button>
               <button className="flex items-center gap-2 border border-white/10 hover:border-white/20 bg-white/[0.04] hover:bg-white/[0.07] text-white px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-200">
@@ -523,7 +527,7 @@ export default function IntervueAI() {
             </h2>
 
             <p className="mt-4 text-slate-400 max-w-xl mx-auto">
-              Six purpose-built tools that cover every dimension of interview
+              Five purpose-built tools that cover every dimension of interview
               prep — from question generation to post-session analytics.
             </p>
           </div>
@@ -535,7 +539,7 @@ export default function IntervueAI() {
               className={`md:col-span-2 bg-[#111118]/80 border border-white/[0.08] rounded-3xl p-8 relative overflow-hidden group hover:border-indigo-500/30 transition-all duration-300 hover:-translate-y-1
         ${featVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
             >
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-white mb-6">
+              <div className="w-12 h-12 rounded-xl bg-indigo-500/20 flex items-center justify-center text-white mb-6">
                 {FEATURES[0].icon}
               </div>
 
@@ -559,7 +563,7 @@ export default function IntervueAI() {
               className={`bg-[#111118]/80 border border-white/[0.08] rounded-3xl p-8 hover:border-cyan-500/30 transition-all duration-300 hover:-translate-y-1
         ${featVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
             >
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white mb-6">
+              <div className="w-12 h-12 rounded-xl  bg-indigo-500/20 flex items-center justify-center text-white mb-6">
                 {FEATURES[1].icon}
               </div>
 
@@ -577,7 +581,7 @@ export default function IntervueAI() {
               className={`bg-[#111118]/80 border border-white/[0.08] rounded-3xl p-8 hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1
         ${featVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
             >
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-white mb-6">
+              <div className="w-12 h-12 rounded-xl  bg-indigo-500/20 flex items-center justify-center text-white mb-6">
                 {FEATURES[2].icon}
               </div>
 
@@ -595,7 +599,7 @@ export default function IntervueAI() {
               className={`bg-[#111118]/80 border border-white/[0.08] rounded-3xl p-8 hover:border-emerald-500/30 transition-all duration-300 hover:-translate-y-1
         ${featVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
             >
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white mb-6">
+              <div className="w-12 h-12 rounded-xl  bg-indigo-500/20 flex items-center justify-center text-white mb-6">
                 {FEATURES[3].icon}
               </div>
 
@@ -613,7 +617,7 @@ export default function IntervueAI() {
               className={`bg-[#111118]/80 border border-white/[0.08] rounded-3xl p-8 hover:border-orange-500/30 transition-all duration-300 hover:-translate-y-1
         ${featVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
             >
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-amber-600 flex items-center justify-center text-white mb-6">
+              <div className="w-12 h-12 rounded-xl  bg-indigo-500/20 flex items-center justify-center text-white mb-6">
                 {FEATURES[4].icon}
               </div>
 
@@ -882,7 +886,7 @@ export default function IntervueAI() {
             interviews with confidence — and walk out with offers.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <button className="flex items-center gap-2 bg-gradient-to-r from-indigo-500 to-violet-600 hover:from-indigo-400 hover:to-violet-500 text-white px-8 py-3.5 rounded-xl font-semibold transition-all duration-200 shadow-xl shadow-indigo-500/30 hover:shadow-indigo-500/50 hover:-translate-y-0.5">
+            <button onClick={() => {if(token) navigate("/dashboard/interview/start"); else navigate("/signin")}} className="flex items-center gap-2 bg-gradient-to-r from-indigo-500 to-violet-600 hover:from-indigo-400 hover:to-violet-500 text-white px-8 py-3.5 rounded-xl font-semibold transition-all duration-200 shadow-xl shadow-indigo-500/30 hover:shadow-indigo-500/50 hover:-translate-y-0.5">
               Start Practising Now <ArrowRight size={16} />
             </button>
             <button className="flex items-center gap-2 border border-white/15 hover:border-white/25 bg-white/[0.05] hover:bg-white/[0.08] text-white px-8 py-3.5 rounded-xl font-semibold transition-all duration-200">
@@ -914,7 +918,7 @@ export default function IntervueAI() {
                 </a>
               ))}
               <a
-                href="#"
+                href="https://github.com/Gopinath1003/IntervueAI" target="_blank"
                 className="hover:text-white transition-colors flex items-center gap-1.5"
               >
                 <Globe size={14} /> GitHub
